@@ -1,0 +1,26 @@
+From 19faccd7ebef5c1c8095848909b2b6a629ec0d91 Mon Sep 17 00:00:00 2001
+From: Tomas Orsava <torsava@redhat.com>
+Date: Tue, 26 Jan 2021 12:49:50 +0100
+Subject: [PATCH] Test skipped due to broken handling of IPv6 addresses
+
+See: https://github.com/giampaolo/psutil/issues/1909
+---
+ psutil/tests/test_linux.py | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/psutil/tests/test_linux.py b/psutil/tests/test_linux.py
+index 2c5d701..ef77157 100755
+--- a/psutil/tests/test_linux.py
++++ b/psutil/tests/test_linux.py
+@@ -920,7 +920,7 @@ class TestLoadAvg(PsutilTestCase):
+ # =====================================================================
+ 
+ 
+-@unittest.skipIf(not LINUX, "LINUX only")
++@unittest.skip("Test skipped due to broken handling of IPv6 addresses: https://github.com/giampaolo/psutil/issues/1909")
+ class TestSystemNetIfAddrs(PsutilTestCase):
+ 
+     def test_ips(self):
+-- 
+2.29.2
+
