@@ -1,0 +1,36 @@
+From 35d3054307a6f2e607026101e6f0b19b6c472864 Mon Sep 17 00:00:00 2001
+From: Stephen Gallagher <sgallagh@redhat.com>
+Date: Wed, 14 Feb 2024 18:14:08 -0500
+Subject: [PATCH] Skip on aarch64 and ppc64le
+
+Signed-off-by: Stephen Gallagher <sgallagh@redhat.com>
+---
+ psutil/tests/test_linux.py | 5 +++++
+ 1 file changed, 5 insertions(+)
+
+diff --git a/psutil/tests/test_linux.py b/psutil/tests/test_linux.py
+index 0583e619de59931a9ee80411a95ef8eb7ef6c171..7f6cfd5431086b108c1a7fa140b407cc9b6b0836 100755
+--- a/psutil/tests/test_linux.py
++++ b/psutil/tests/test_linux.py
+@@ -14,6 +14,7 @@ import errno
+ import glob
+ import io
+ import os
++import platform
+ import re
+ import shutil
+ import socket
+@@ -888,6 +889,10 @@ class TestSystemCPUFrequency(PsutilTestCase):
+                     self.assertEqual(freq.max, 700.0)
+ 
+     @unittest.skipIf(not HAS_CPU_FREQ, "not supported")
++    @unittest.skipIf(platform.machine() == "aarch64",
++                     "https://github.com/giampaolo/psutil/issues/2373")
++    @unittest.skipIf(platform.machine() == "ppc64le",
++                     "https://github.com/giampaolo/psutil/issues/2373")
+     def test_emulate_multi_cpu(self):
+         def open_mock(name, *args, **kwargs):
+             n = name
+-- 
+2.43.0
+

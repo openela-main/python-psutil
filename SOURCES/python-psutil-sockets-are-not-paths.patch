@@ -1,0 +1,13 @@
+diff --git a/psutil/tests/test_process_all.py b/psutil/tests/test_process_all.py
+index afb3195..fd9c96c 100755
+--- a/psutil/tests/test_process_all.py
++++ b/psutil/tests/test_process_all.py
+@@ -404,7 +404,7 @@ class TestFetchAllProcesses(PsutilTestCase):
+             for fname in nt._fields:
+                 value = getattr(nt, fname)
+                 if fname == 'path':
+-                    if not value.startswith(("[", "anon_inode:")):
++                    if not value.startswith(("[", "anon_inode:", "socket:")):
+                         assert os.path.isabs(nt.path), nt.path
+                         # commented as on Linux we might get
+                         # '/foo/bar (deleted)'

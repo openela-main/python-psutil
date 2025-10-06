@@ -1,0 +1,13 @@
+diff --git a/psutil/tests/test_system.py b/psutil/tests/test_system.py
+index c146f3e..671babc 100755
+--- a/psutil/tests/test_system.py
++++ b/psutil/tests/test_system.py
+@@ -903,7 +903,7 @@ class TestNetAPIs(PsutilTestCase):
+ 
+ 
+ class TestSensorsAPIs(PsutilTestCase):
+-    @unittest.skipIf(not HAS_SENSORS_TEMPERATURES, "not supported")
++    @unittest.skip("https://github.com/giampaolo/psutil/issues/2434")
+     def test_sensors_temperatures(self):
+         temps = psutil.sensors_temperatures()
+         for name, entries in temps.items():
