@@ -1,6 +1,6 @@
 Name:           python-psutil
 Version:        5.9.8
-Release:        5%{?dist}
+Release:        6%{?dist}
 Summary:        A process and system utilities module for Python
 
 License:        BSD-3-Clause
@@ -122,6 +122,10 @@ APPVEYOR=1 %{py3_test_envvars} %{python3} psutil/tests/runner.py
 
 
 %changelog
+* Fri May 23 2025 Andrea Bolognani <abologna@redhat.com> - 5.9.8-6
+- Skip test_emulate_multi_cpu on riscv64 too
+  Resolves: RHEL-93392
+
 * Tue Oct 29 2024 Troy Dawson <tdawson@redhat.com> - 5.9.8-5
 - Bump release for October 2024 mass rebuild:
   Resolves: RHEL-64018
